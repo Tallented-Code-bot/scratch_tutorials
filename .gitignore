@@ -25,3 +25,4 @@ yarn-error.log*
 # Vim autocomplete stuff
 .tern-project
 .vscode
+README.html
