@@ -1,7 +1,15 @@
 //initialize variables
 const express=require('express');
+const mongoose=require('mongoose');
 const path=require('path');
 const PORT=process.env.PORT || 3000;
+
+mongoose.connect("mongodb://localhost/scratch_tutorials")
+mongoose.connection.once('open',()=>{
+	console.log("Connection has been made");
+}).on("error",error=>{
+	console.log("Connection error:"+ error)
+})
 const app= express();
 
 
