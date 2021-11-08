@@ -1,8 +1,10 @@
+import React from "react";
 import { useState } from "react";
 import TutorialList from "./TutorialList";
+import PropTypes from "prop-types";
 
 const Home = () => {
-  const [tutorials, setTutorials] = useState([
+  const [tutorials] = useState([
     {
       title: "Test number 1",
       body: "This is a test",
@@ -17,10 +19,13 @@ const Home = () => {
     },
   ]);
   return (
-    <div class="home">
+    <div className="home">
       <TutorialList tutorials={tutorials} title={"All tutorials"} />
     </div>
   );
 };
 
+Home.propTypes = {
+  title: PropTypes.string,
+};
 export default Home;

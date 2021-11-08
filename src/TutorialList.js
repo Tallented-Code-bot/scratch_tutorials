@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 const TutorialList = (props) => {
   const tutorials = props.tutorials;
   const title = props.title;
@@ -12,6 +14,11 @@ const TutorialList = (props) => {
       ))}
     </div>
   );
+};
+
+TutorialList.propTypes = {
+  title: PropTypes.string,
+  tutorials: PropTypes.array,
 };
 
 export default TutorialList;
