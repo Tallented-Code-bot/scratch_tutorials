@@ -1,8 +1,10 @@
 # Scratch Tutorials
+
 ## What is it?
+
 Scratch tutorials is a website for tutorials about [scratch](https://scratch.mit.edu).
 I got the idea from [FlagClicked](https://github.com/FlagClicked/FlagClicked), but that
-project is not in active development as of now. 
+project is not in active development as of now.
 
 ## Installation
 
@@ -12,13 +14,11 @@ cd scratch_tutorials
 npm install
 ```
 
-
 #### Running the frontend
 
 ```
 npm run start
 ```
-
 
 #### Running the backend
 
