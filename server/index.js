@@ -10,6 +10,7 @@ mongoose.connect("mongodb://localhost/scratch_tutorials");
 mongoose.connection
   .once("open", () => {
     console.log("Connection has been made");
+    //mongoose.connection.collections.tutorials.drop();
   })
   .on("error", (error) => {
     console.log("Connection error:" + error);
@@ -24,11 +25,6 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from the server!" });
 });
 
-//serve the react application from /
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../build/", "index.html"));
-});
-
 //create a new tutorial
 app.post("/api/tutorials/", async (req, res) => {
   console.log(`Incoming Post request /api/tutorials/`);
@@ -38,6 +34,7 @@ app.post("/api/tutorials/", async (req, res) => {
   const tutorial = new Tutorial({
     author: req.query.author,
     body: req.query.body,
+    title: req.query.title,
   });
   try {
     const newTutorial = await tutorial.save();
@@ -70,6 +67,11 @@ app.get("/api/tutorials/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+});
+
+//serve the react application from /
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../build/", "index.html"));
 });
 
 //listen on port 3000 by default
