@@ -59,6 +59,19 @@ app.get("/api/tutorials/all/", async (req, res) => {
   }
 });
 
+//get one tutorial
+app.get("/api/tutorials/:id", async (req, res) => {
+  console.log(`Incoming Get request /api/tutorials/${req.params.id}`);
+  try {
+    const tutorials = await Tutorial.find({ _id: req.params.id });
+    res.json(tutorials);
+    console.log(`Returning:`);
+    console.log(tutorials);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //listen on port 3000 by default
 app.listen(PORT, () => {
   console.log(`Server listening on https://localhost:${PORT}`);
