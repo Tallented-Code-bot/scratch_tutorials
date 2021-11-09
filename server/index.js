@@ -5,6 +5,7 @@ const Tutorial = require("./models/tutorials.js");
 const path = require("path");
 const PORT = process.env.PORT || 3000;
 
+//connect to mongodb
 mongoose.connect("mongodb://localhost/scratch_tutorials");
 mongoose.connection
   .once("open", () => {
@@ -15,6 +16,7 @@ mongoose.connection
   });
 const app = express();
 
+//host static files from the build directory
 app.use(express.static(path.resolve(__dirname, "../build")));
 
 //return hello world in json
@@ -22,13 +24,17 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from the server!" });
 });
 
+//serve the react application from /
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../build/", "index.html"));
 });
 
+//create a new tutorial
 app.post("/api/tutorials/", async (req, res) => {
-  console.log(req.query.author);
-  console.log(req.query.body);
+  console.log(`Incoming Post request /api/tutorials/`);
+  console.log(
+    `Creating new tutorial:\n{\t"author":${req.query.author},\n\t"body":${req.query.body}\n}`
+  );
   const tutorial = new Tutorial({
     author: req.query.author,
     body: req.query.body,
@@ -43,6 +49,8 @@ app.post("/api/tutorials/", async (req, res) => {
 
 //Get all tutorials
 app.get("/api/tutorials/all/", async (req, res) => {
+  console.log(`Incoming Get request /api/tutorials/all/`);
+  console.log(`Returning all tutorials`);
   try {
     const tutorials = await Tutorial.find();
     res.json(tutorials);
