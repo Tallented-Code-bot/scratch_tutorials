@@ -75,6 +75,6 @@ app.get("*", (req, res) => {
 });
 
 //listen on port 3000 by default
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server listening on https://localhost:${PORT}`);
 });
