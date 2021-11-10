@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Tutorial = require("./models/tutorials.js");
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 //connect to mongodb
 mongoose.connect("mongodb://localhost/scratch_tutorials");
@@ -49,6 +49,7 @@ app.get("/api/tutorials/all/", async (req, res) => {
   console.log(`Incoming Get request /api/tutorials/all/`);
   console.log(`Returning all tutorials`);
   try {
+    res.set("Access-Control-Allow-Origin", "*");
     const tutorials = await Tutorial.find();
     res.json(tutorials);
   } catch (err) {

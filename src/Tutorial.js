@@ -6,7 +6,7 @@ const Tutorial = () => {
   const [tutorial, setTutorial] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/tutorials/${id}`)
+    fetch(`http://localhost:8080/api/tutorials/${id}`)
       .then((res) => {
         return res.json();
       })

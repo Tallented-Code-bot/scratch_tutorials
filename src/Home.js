@@ -24,7 +24,7 @@ const Home = () => {
   );
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/tutorials/all/")
+    fetch("http://192.168.212.52:8080/api/tutorials/all/")
       .then((res) => {
         return res.json();
       })
