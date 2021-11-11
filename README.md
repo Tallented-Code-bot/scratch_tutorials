@@ -34,3 +34,12 @@ node server/index.js
 ```
 
 Then go to http://localhost:3000/ to see it.
+
+## Features
+
+- [x] Tutorial creation and deletion
+- [ ] User authentication
+- [x] Basic markdown syntax
+- [ ] Scratch blocks in markdown
+- [ ] Comments
+- [ ] Up voting tutorials
