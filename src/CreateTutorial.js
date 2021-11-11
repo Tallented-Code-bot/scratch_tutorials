@@ -6,18 +6,18 @@ const CreateTutorial = () => {
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const tutorial = { body: markdown, author: "Calvin", title: title };
-    console.log(tutorial);
 
-    fetch("http://192.168.212.52:8080/api/tutorials/", {
+    const response = await fetch("http://192.168.212.52:8080/api/tutorials/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(tutorial),
-    }).then(() => {
-      alert("New tutorial added successfully");
     });
+    const data = await response.json();
+    console.log(data);
+    alert("New tutorial added successfully");
   }
 
   return (
