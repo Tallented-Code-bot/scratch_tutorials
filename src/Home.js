@@ -4,30 +4,15 @@ import TutorialList from "./TutorialList";
 import PropTypes from "prop-types";
 
 const Home = () => {
-  const [tutorials, setTutorials] = useState(
-    /*[
-  {
-  title: "Test number 1",
-  body: "This is a test",
-  author: "griffpatch",
-  id: 1,
-  },
-  {
-  title: "Test number 2",
-  body: "This is another test",
-  author: "will_wam",
-  id: 2,
-  },
-  ]
-  */
-    null
-  );
+  const [tutorials, setTutorials] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function retrieveData() {
       const json = await fetch("http://192.168.212.52:8080/api/tutorials/all/");
       const data = await json.json();
       setTutorials(data);
+      setIsLoading(false);
       console.log("Got json from response");
     }
     retrieveData();
@@ -35,7 +20,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      {console.log(tutorials)}
+      {isLoading && <div>Loading... </div>}
       {tutorials && (
         <TutorialList tutorials={tutorials} title={"All tutorials"} />
       )}
