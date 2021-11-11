@@ -1,5 +1,6 @@
 //initialize variables
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Tutorial = require("./models/tutorials.js");
 const path = require("path");
@@ -10,7 +11,7 @@ mongoose.connect("mongodb://localhost/scratch_tutorials");
 mongoose.connection
   .once("open", () => {
     console.log("Connection has been made");
-    //mongoose.connection.collections.tutorials.drop();
+    mongoose.connection.collections.tutorials.drop();
   })
   .on("error", (error) => {
     console.log("Connection error:" + error);
@@ -19,6 +20,8 @@ const app = express();
 
 //host static files from the build directory
 app.use(express.static(path.resolve(__dirname, "../build")));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //return hello world in json
 app.get("/api", (req, res) => {
@@ -29,12 +32,12 @@ app.get("/api", (req, res) => {
 app.post("/api/tutorials/", async (req, res) => {
   console.log(`Incoming Post request /api/tutorials/`);
   console.log(
-    `Creating new tutorial:\n{\t"author":${req.query.author},\n\t"body":${req.query.body}\n}`
+    `Creating new tutorial:\n{\t"author":${req.body.author},\n\t"body":${req.body.body},\n\t"title":${req.body.title}\n}`
   );
   const tutorial = new Tutorial({
-    author: req.query.author,
-    body: req.query.body,
-    title: req.query.title,
+    author: req.body.author,
+    body: req.body.body,
+    title: req.body.title,
   });
   try {
     const newTutorial = await tutorial.save();
