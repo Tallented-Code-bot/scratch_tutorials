@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Home from "./Home";
 import About from "./About";
 import Tutorial from "./Tutorial";
+import CreateTutorial from "./CreateTutorial";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
             </Route>
             <Route path="/about">
               <About />
+            </Route>
+            <Route path="/tutorials/create/">
+              <CreateTutorial />
             </Route>
             <Route path="/tutorials/:id">
               <Tutorial />
