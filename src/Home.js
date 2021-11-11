@@ -24,14 +24,13 @@ const Home = () => {
   );
 
   useEffect(() => {
-    fetch("http://192.168.212.52:8080/api/tutorials/all/")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setTutorials(data);
-      });
+    async function retrieveData() {
+      const json = await fetch("http://192.168.212.52:8080/api/tutorials/all/");
+      const data = await json.json();
+      setTutorials(data);
+      console.log("Got json from response");
+    }
+    retrieveData();
   }, []);
 
   return (
