@@ -38,6 +38,9 @@ app.post("/api/tutorials/", async (req, res) => {
   });
   try {
     const newTutorial = await tutorial.save();
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Methods", "*");
+    res.set("Access-Control-Allow-Headers", "Content-Type");
     res.status(201).json(newTutorial);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -47,12 +50,13 @@ app.post("/api/tutorials/", async (req, res) => {
 //Get all tutorials
 app.get("/api/tutorials/all/", async (req, res) => {
   console.log(`Incoming Get request /api/tutorials/all/`);
-  console.log(`Returning all tutorials`);
   try {
     res.set("Access-Control-Allow-Origin", "*");
     const tutorials = await Tutorial.find();
     res.json(tutorials);
+    console.log(`Returning all tutorials`);
   } catch (err) {
+    console.log(`Error: ${err.message}`);
     res.status(500).json({ message: err.message });
   }
 });
@@ -62,6 +66,7 @@ app.get("/api/tutorials/:id", async (req, res) => {
   console.log(`Incoming Get request /api/tutorials/${req.params.id}`);
   try {
     const tutorials = await Tutorial.find({ _id: req.params.id });
+    res.set("Access-Control-Allow-Origin", "*");
     res.json(tutorials);
     console.log(`Returning:`);
     console.log(tutorials);
