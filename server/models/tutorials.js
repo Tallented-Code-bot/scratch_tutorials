@@ -6,6 +6,7 @@ const TutorialSchema = new Schema({
   author: String,
   body: String,
 });
+TutorialSchema.index({ title: "text", body: "text" });
 
 const Tutorial = mongoose.model("tutorial", TutorialSchema);
 
