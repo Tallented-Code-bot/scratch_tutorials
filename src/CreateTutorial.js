@@ -10,11 +10,14 @@ const CreateTutorial = () => {
     e.preventDefault();
     const tutorial = { body: markdown, author: "Calvin", title: title };
 
-    const response = await fetch("http://192.168.212.52:8080/api/tutorials/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(tutorial),
-    });
+    const response = await fetch(
+      `http://${window.location.hostname}:3390/api/tutorials/`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tutorial),
+      }
+    );
     const data = await response.json();
     console.log(data);
     alert("New tutorial added successfully");

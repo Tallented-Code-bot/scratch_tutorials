@@ -9,7 +9,9 @@ const Home = () => {
 
   useEffect(() => {
     async function retrieveData() {
-      const json = await fetch("http://192.168.212.52:8080/api/tutorials/all/");
+      const json = await fetch(
+        `http://${window.location.hostname}:3390/api/tutorials/all/`
+      );
       const data = await json.json();
       setTutorials(data);
       setIsLoading(false);

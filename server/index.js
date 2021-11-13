@@ -4,14 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Tutorial = require("./models/tutorials.js");
 const path = require("path");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3390;
 
 //connect to mongodb
 mongoose.connect("mongodb://localhost/scratch_tutorials");
 mongoose.connection
   .once("open", () => {
     console.log("Connection has been made");
-    mongoose.connection.collections.tutorials.drop();
+    //mongoose.connection.collections.tutorials.drop();
   })
   .on("error", (error) => {
     console.log("Connection error:" + error);
