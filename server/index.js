@@ -64,6 +64,20 @@ app.get("/api/tutorials/all/", async (req, res) => {
   }
 });
 
+app.get("/api/tutorials/search/", async (req, res) => {
+  console.log(req.query);
+  console.log(`Incoming Post requests /api/tutorials/search/`);
+  try {
+    const tutorials = await Tutorial.find({
+      $text: { $search: req.query.search },
+    });
+    res.set("Access-Control-Allow-Origin", "*");
+    res.json(tutorials);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //get one tutorial
 app.get("/api/tutorials/:id", async (req, res) => {
   console.log(`Incoming Get request /api/tutorials/${req.params.id}`);
