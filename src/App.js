@@ -4,6 +4,7 @@ import Home from "./Home";
 import About from "./About";
 import Tutorial from "./Tutorial";
 import CreateTutorial from "./CreateTutorial";
+import Searchpage from "./Searchpage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route path="/tutorials/create/">
               <CreateTutorial />
+            </Route>
+            <Route exact path="/tutorials/search/">
+              <Searchpage />
             </Route>
             <Route path="/tutorials/:id">
               <Tutorial />
