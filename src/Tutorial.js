@@ -8,7 +8,7 @@ const Tutorial = () => {
   const [tutorial, setTutorial] = useState(null);
 
   useEffect(() => {
-    fetch(`http://192.168.212.52:8080/api/tutorials/${id}`)
+    fetch(`http://${window.location.hostname}:3390/api/tutorials/${id}`)
       .then((res) => {
         return res.json();
       })
