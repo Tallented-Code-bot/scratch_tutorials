@@ -2,10 +2,10 @@ import qs from "query-string";
 
 const setQueryStringWithoutPageReload = (qsValue) => {
   const newurl =
-    window.location.protocall +
+    window.location.protocol +
     "//" +
     window.location.host +
-    window.locationn.pathname +
+    window.location.pathname +
     qsValue;
 
   window.history.pushState({ path: newurl }, "", newurl);
