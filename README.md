@@ -66,7 +66,7 @@ npm run build
 node server/index.js
 ```
 
-Then go to http://localhost:3000/ to see it.
+Then go to http://localhost:3390 or to the port that you specified.
 
 ## Features
 
