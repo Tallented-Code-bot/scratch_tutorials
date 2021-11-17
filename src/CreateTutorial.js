@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import Scratchblocks from "./Scratchblocks";
+import Markdown from "./Markdown";
 
 const CreateTutorial = () => {
   const [markdown, setMarkdown] = useState("");
@@ -57,15 +56,7 @@ const CreateTutorial = () => {
       </form>
 
       <h3>Preview</h3>
-      <ReactMarkdown
-        components={{
-          code: ({ ...props }) => <Scratchblocks {...props}></Scratchblocks>,
-          //code: "Scratchblocks",
-          //code: () => <h6>say</h6>,
-        }}
-      >
-        {markdown}
-      </ReactMarkdown>
+      <Markdown>{markdown}</Markdown>
     </div>
   );
 };
