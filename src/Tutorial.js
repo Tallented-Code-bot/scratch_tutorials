@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
+import Markdown from "./Markdown";
 import "./tutorial.css";
 
 const Tutorial = () => {
@@ -23,7 +23,7 @@ const Tutorial = () => {
       {tutorial && <h1>{tutorial[0].title}</h1>}
       {tutorial && <h3>By {tutorial[0].author}</h3>}
       {tutorial && (
-        <ReactMarkdown>{tutorial[0].body.replace(/\\n/gi, "\n")}</ReactMarkdown>
+        <Markdown>{tutorial[0].body.replace(/\\n/gi, "\n")}</Markdown>
       )}
     </div>
   );
