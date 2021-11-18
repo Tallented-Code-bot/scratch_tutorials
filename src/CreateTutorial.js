@@ -8,7 +8,7 @@ const CreateTutorial = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const tutorial = { body: markdown, author: "Calvin", title: title };
+    const tutorial = { body: markdown, author: "Unknown", title: title };
 
     const response = await fetch(
       `http://${window.location.hostname}:3390/api/tutorials/`,
