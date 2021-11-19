@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const verifyUser = require("./verifyUser");
 const Tutorial = require("./models/tutorials.js");
 const path = require("path");
 const PORT = process.env.PORT || 3390;
@@ -92,12 +93,28 @@ app.get("/api/tutorials/:id", async (req, res) => {
   }
 });
 
+app.post("/api/verifyscratchuser/", async (req, res) => {
+  const username = req.query.username;
+  const password = req.query.password;
+  const good = await verifyUser.verifyUser(username, password);
+
+  if (good) {
+    res
+      .status(200)
+      .json({ username: username, password: password, correct: true });
+  } else {
+    res
+      .status(200)
+      .json({ username: username, password: password, correct: false });
+  }
+});
+
 //serve the react application from /
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../build/", "index.html"));
 });
 
 //listen on port 3000 by default
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`Server listening on https://localhost:${PORT}`);
 });
