@@ -1,13 +1,13 @@
 //initialize variables
-const config=require("./config");
+const config = require("./config");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const verifyUser = require("./verifyUser");
 const Tutorial = require("./models/tutorials.js");
 const User = require("./models/users.js");
 const path = require("path");
-
 
 //connect to mongodb
 mongoose.connect(config.db.connectionString);
@@ -112,16 +112,23 @@ app.post("/api/verifyscratchuser/", async (req, res) => {
 });
 
 app.post("/api/users/signup", (req, res) => {
-  let newUser = new User();
-  newUser.username = req.body.username;
-  newUser.setPassword(req.body.password);
+  console.log(`Incoming request /api/users/signup`);
+  console.log(`username:${req.body.username}`);
+  console.log(`password:${req.body.password}`);
 
-  newUser.save((err) => {
-    if (err) {
-      return res.status(400).json({ message: "Failed to add user" });
-    } else {
-      return res.status(201).json({ message: "User added succcessfully" });
-    }
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    let newUser = new User({ username: req.body.username, hash: hash });
+    console.log(
+      `creating user with username=${req.body.username} and hash=${hash}`
+    );
+
+    newUser.save((err) => {
+      if (err) {
+        return res.status(400).json({ message: "Failed to add user" });
+      } else {
+        return res.status(201).json({ message: "User added successfully" });
+      }
+    });
   });
 });
 
@@ -131,6 +138,8 @@ app.get("*", (req, res) => {
 });
 
 //listen on port 3000 by default
-app.listen(config.listen_port,config.listen_ip, () => {
-  console.log(`Server listening on https://${config.listen_ip}:${config.listen_port}`);
+app.listen(config.listen_port, () => {
+  console.log(
+    `Server listening on https://${config.listen_ip}:${config.listen_port}`
+  );
 });
