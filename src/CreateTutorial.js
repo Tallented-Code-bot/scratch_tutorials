@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "./Markdown";
 
 const CreateTutorial = () => {
   const [markdown, setMarkdown] = useState("");
@@ -8,7 +8,7 @@ const CreateTutorial = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const tutorial = { body: markdown, author: "Calvin", title: title };
+    const tutorial = { body: markdown, author: "Unknown", title: title };
 
     const response = await fetch(
       `http://${window.location.hostname}:3390/api/tutorials/`,
@@ -56,7 +56,7 @@ const CreateTutorial = () => {
       </form>
 
       <h3>Preview</h3>
-      <ReactMarkdown>{markdown}</ReactMarkdown>
+      <Markdown>{markdown}</Markdown>
     </div>
   );
 };

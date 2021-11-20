@@ -13,12 +13,14 @@
     "mongoose": "^6.0.12",
     "node-fetch": "^2.6.6",
     "prop-types": "^15.7.2",
+    "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^7.1.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "scratch3-api": "^4.1.0",
+    "scratchblocks": "^3.5.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

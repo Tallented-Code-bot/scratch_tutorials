@@ -1,15 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+//import { useHistory } from "react-router-dom";
+//import useQueryString from "./hooks/useQueryString";
 
-const Searchbar = () => {
+const Searchbar = (props) => {
   const [searchText, setSearchText] = useState("");
-  const history = useHistory();
+  //const history = useHistory();
+  //const [search, setSearch] = useQueryString("search");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("hi");
-    history.push(`/tutorials/search?search=${searchText}`);
+    props.setSearch(searchText);
   }
 
   return (
@@ -27,3 +29,7 @@ const Searchbar = () => {
 };
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  setSearch: PropTypes.func,
+};

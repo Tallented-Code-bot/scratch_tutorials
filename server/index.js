@@ -1,4 +1,5 @@
 //initialize variables
+const config=require("./config");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -6,10 +7,10 @@ const verifyUser = require("./verifyUser");
 const Tutorial = require("./models/tutorials.js");
 const User = require("./models/users.js");
 const path = require("path");
-const PORT = process.env.PORT || 3390;
+
 
 //connect to mongodb
-mongoose.connect("mongodb://localhost/scratch_tutorials");
+mongoose.connect(config.db.connectionString);
 mongoose.connection
   .once("open", () => {
     console.log("Connection has been made");
@@ -130,6 +131,6 @@ app.get("*", (req, res) => {
 });
 
 //listen on port 3000 by default
-app.listen(PORT, () => {
-  console.log(`Server listening on https://localhost:${PORT}`);
+app.listen(config.listen_port,config.listen_ip, () => {
+  console.log(`Server listening on https://${config.listen_ip}:${config.listen_port}`);
 });
