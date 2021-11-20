@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const verifyUser = require("./verifyUser");
 const Tutorial = require("./models/tutorials.js");
+const User = require("./models/users.js");
 const path = require("path");
 const PORT = process.env.PORT || 3390;
 
@@ -107,6 +108,20 @@ app.post("/api/verifyscratchuser/", async (req, res) => {
       .status(200)
       .json({ username: username, password: password, correct: false });
   }
+});
+
+app.post("/api/users/signup", (req, res) => {
+  let newUser = new User();
+  newUser.username = req.body.username;
+  newUser.setPassword(req.body.password);
+
+  newUser.save((err) => {
+    if (err) {
+      return res.status(400).json({ message: "Failed to add user" });
+    } else {
+      return res.status(201).json({ message: "User added succcessfully" });
+    }
+  });
 });
 
 //serve the react application from /
