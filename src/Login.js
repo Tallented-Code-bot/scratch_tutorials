@@ -2,7 +2,9 @@ import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const Login = (props) => {
+import AuthService from "./authService";
+
+const Login = ({ /*user,*/ setCurrentUser }) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
@@ -10,7 +12,9 @@ const Login = (props) => {
     e.preventDefault();
     console.log("hi");
     alert(`username is ${username}, password is ${password}`);
-    props.setToken("hello");
+    //props.setToken("hello");
+    AuthService.login(username);
+    setCurrentUser(AuthService.getCurrentUser());
   }
 
   return (
@@ -45,7 +49,8 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  setToken: PropTypes.func,
+  setCurrentUser: PropTypes.func,
+  //user: PropTypes.string,
 };
 
 export default Login;
