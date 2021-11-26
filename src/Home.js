@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import TutorialList from "./TutorialList";
 import PropTypes from "prop-types";
 
+import "./loading.css";
 const Home = () => {
   const [tutorials, setTutorials] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +23,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      {isLoading && <div>Loading... </div>}
+      {isLoading && <div className="loading"></div>}
       {tutorials && (
         <TutorialList tutorials={tutorials} title={"All tutorials"} />
       )}
