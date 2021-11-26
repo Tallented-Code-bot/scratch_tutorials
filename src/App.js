@@ -7,6 +7,7 @@ import Tutorial from "./Tutorial";
 import CreateTutorial from "./CreateTutorial";
 import Explore from "./Explore";
 import Login from "./Login";
+import MarkdownTutorial from "./MarkdownTutorial";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path="/login/">
               <Login setCurrentUser={setCurrentUser} />
+            </Route>
+            <Route path="/markdown/">
+              <MarkdownTutorial />
             </Route>
           </Switch>
         </div>
