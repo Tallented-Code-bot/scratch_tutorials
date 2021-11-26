@@ -16,6 +16,7 @@ const Navbar = (props) => {
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/tutorials/create">Create</Link>
+          <Link to="/tutorials/explore">Explore</Link>
           <button
             onClick={() => {
               AuthService.logout();
