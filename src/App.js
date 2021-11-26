@@ -25,7 +25,7 @@ function App() {
               <About />
             </Route>
             <Route path="/tutorials/create/">
-              <CreateTutorial />
+              <CreateTutorial currentUser={currentUser} />
             </Route>
             <Route exact path="/tutorials/explore/">
               <Explore />

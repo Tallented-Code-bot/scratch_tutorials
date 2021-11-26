@@ -1,8 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import Markdown from "./Markdown";
+import PropTypes from "prop-types";
+//import NeedAuthentication from "needAuthentication";
 
-const CreateTutorial = () => {
+import NeedAuthentication from "./needAuthentication";
+
+const CreateTutorial = ({ currentUser }) => {
+  if (!currentUser) {
+    return <NeedAuthentication />;
+  }
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
 
@@ -59,6 +66,10 @@ const CreateTutorial = () => {
       <Markdown>{markdown}</Markdown>
     </div>
   );
+};
+
+CreateTutorial.propTypes = {
+  currentUser: PropTypes.string,
 };
 
 export default CreateTutorial;
